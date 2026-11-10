@@ -1,0 +1,81 @@
+name: Compiler Atelier Companion (Android ARM64)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'atelier_companion/**'
+      - '.github/workflows/build-atelier-companion.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atelier-companion-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-apk:
+    name: APK Android ARM64
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    defaults:
+      run:
+        working-directory: atelier_companion
+
+    steps:
+      - name: Récupérer uniquement le projet indépendant
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout: |
+            atelier_companion
+
+      - name: Installer Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Installer Flutter 3.47.9
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+
+      - name: Générer les fichiers Android manquants
+        run: |
+          flutter create --platforms=android --org com.atelier --project-name atelier_companion .
+          sed -i 's/android:label="atelier_companion"/android:label="Atelier Companion"/' android/app/src/main/AndroidManifest.xml
+
+      - name: Installer les dépendances Flutter
+        run: flutter pub get
+
+      - name: Vérifier les tests unitaires
+        run: flutter test
+
+      - name: Compiler APK (ARM64 uniquement)
+        run: flutter build apk --release --target-platform android-arm64
+
+      - name: Préparer le fichier installable
+        run: |
+          mkdir -p dist
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Atelier-Companion-v0.1.0-arm64.apk
+          sha256sum dist/Atelier-Companion-v0.1.0-arm64.apk > dist/SHA256SUMS.txt
+          echo '### Compilation de Atelier Companion terminée' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Téléchargez **Atelier-Companion-Android-ARM64** dans les artifacts ci-dessous.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'APK de test signée avec la configuration générée par Flutter; ne pas utiliser en production.' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Télécharger l’APK depuis Actions
+        uses: actions/upload-artifact@v4
+        with:
+          name: Atelier-Companion-Android-ARM64
+          path: |
+            atelier_companion/dist/Atelier-Companion-v0.1.0-arm64.apk
+            atelier_companion/dist/SHA256SUMS.txt
+          retention-days: 14
+          if-no-files-found: error

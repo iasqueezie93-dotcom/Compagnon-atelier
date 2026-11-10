@@ -1,0 +1,18 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+
+# Plateformes générées par `flutter create .`
+# (android/, ios/, etc. seront recréés localement)
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Divers
+.DS_Store

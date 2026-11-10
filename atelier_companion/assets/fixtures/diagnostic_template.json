@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Freinage",
+    "points": [
+      { "id": "brk_pad_f", "label": "Plaquettes avant" },
+      { "id": "brk_pad_r", "label": "Plaquettes arrière" },
+      { "id": "brk_disc_f", "label": "Disques avant" },
+      { "id": "brk_fluid", "label": "Liquide de frein" }
+    ]
+  },
+  {
+    "title": "Pneumatiques",
+    "points": [
+      { "id": "tyre_depth_f", "label": "Profondeur avant" },
+      { "id": "tyre_depth_r", "label": "Profondeur arrière" },
+      { "id": "tyre_pressure", "label": "Pression" },
+      { "id": "tyre_dot", "label": "Âge / DOT" }
+    ]
+  },
+  {
+    "title": "Éclairage & visibilité",
+    "points": [
+      { "id": "light_front", "label": "Feux avant" },
+      { "id": "light_rear", "label": "Feux arrière" },
+      { "id": "light_turn", "label": "Clignotants" },
+      { "id": "wiper", "label": "Essuie-glaces" }
+    ]
+  },
+  {
+    "title": "Sous le capot",
+    "points": [
+      { "id": "oil_level", "label": "Niveau d'huile" },
+      { "id": "coolant", "label": "Liquide de refroidissement" },
+      { "id": "battery", "label": "Batterie" },
+      { "id": "belt", "label": "Courroie / distribution" }
+    ]
+  }
+]

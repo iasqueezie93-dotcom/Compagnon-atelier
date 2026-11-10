@@ -1,0 +1,30 @@
+[
+  {
+    "id": "OR-1001",
+    "customer": "Client Démo A",
+    "status": "aFaire",
+    "operations": ["Vidange + filtre", "Contrôle freinage"],
+    "vehicle": { "plate": "AB-123-CD", "brand": "Renault", "model": "Clio IV 1.5 dCi", "vin": "VF1R0A00067123456", "year": 2018, "mileageKm": 96500 }
+  },
+  {
+    "id": "OR-1002",
+    "customer": "Client Démo B",
+    "status": "enCours",
+    "operations": ["Permutation pneus", "Géométrie"],
+    "vehicle": { "plate": "EF-456-GH", "brand": "Peugeot", "model": "208 1.2 PureTech", "vin": "VF3CC000012345678", "year": 2020, "mileageKm": 54200 }
+  },
+  {
+    "id": "OR-1003",
+    "customer": "Client Démo C",
+    "status": "controle",
+    "operations": ["Plaquettes AV", "Disques AV"],
+    "vehicle": { "plate": "IJ-789-KL", "brand": "Volkswagen", "model": "Golf VII 2.0 TDI", "vin": "WVWZZZ1KZAW000000", "year": 2017, "mileageKm": 131000 }
+  },
+  {
+    "id": "OR-1004",
+    "customer": "Client Démo D",
+    "status": "termine",
+    "operations": ["Climatisation - recharge"],
+    "vehicle": { "plate": "MN-012-OP", "brand": "Renault", "model": "Mégane III 1.9 dCi", "vin": "VF1BZ000054321987", "year": 2015, "mileageKm": 187300 }
+  }
+]

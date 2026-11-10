@@ -50,6 +50,7 @@ jobs:
       - name: Générer les fichiers Android manquants
         run: |
           flutter create --platforms=android --org com.atelier --project-name atelier_companion .
+          rm -f test/widget_test.dart
           sed -i 's/android:label="atelier_companion"/android:label="Atelier Companion"/' android/app/src/main/AndroidManifest.xml
 
       - name: Installer les dépendances Flutter
